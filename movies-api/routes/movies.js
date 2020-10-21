@@ -68,6 +68,22 @@ const moviesApi = (app) => {
     }
   });
 
+  router.patch('/:movieId', async function (req, res, next) {
+    const { movieId } = req.params;
+    const { body: movie } = req;
+
+    try {
+      const updateMovieId = await moviesService.updatePatch({ movieId, movie });
+
+      res.status(200).json({
+        data: updateMovieId,
+        message: 'resource updated',
+      });
+    } catch (err) {
+      next(err);
+    }
+  });
+
   router.delete('/:movieId', async function (req, res, next) {
     const { movieId } = req.params;
 
@@ -82,6 +98,7 @@ const moviesApi = (app) => {
       next(err);
     }
   });
+  router.patch;
 };
 
 module.exports = moviesApi;
