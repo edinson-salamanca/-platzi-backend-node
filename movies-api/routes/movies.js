@@ -29,7 +29,7 @@ const moviesApi = (app) => {
       next(err);
     }
   });
-  // get po id
+
   router.get(
     '/:movieId',
     validationHandler({ movieId: movieIdSchema }, 'params'),
