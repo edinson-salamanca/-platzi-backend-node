@@ -23,7 +23,7 @@ const moviesApi = (app) => {
 
       res.status(200).json({
         data: movies,
-        message: 'movies listes',
+        message: 'movies listed',
       });
     } catch (err) {
       next(err);
