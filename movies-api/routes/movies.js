@@ -12,6 +12,7 @@ const moviesApi = (app) => {
   } = require('../utils/schemas/movies');
 
   const validationHandler = require('../utils/middleware/validationHandler');
+  const buildMessage = require('../utils/buildMessage');
 
   app.use('/api/movies', router);
 
@@ -23,7 +24,7 @@ const moviesApi = (app) => {
 
       res.status(200).json({
         data: movies,
-        message: 'movies listed',
+        message: buildMessage('movie', 'list'),
       });
     } catch (err) {
       next(err);
@@ -41,7 +42,7 @@ const moviesApi = (app) => {
 
         res.status(200).json({
           data: movies,
-          message: 'movie retrieved',
+          message: buildMessage('movie', 'retrieve'),
         });
       } catch (err) {
         next(err);
@@ -60,7 +61,7 @@ const moviesApi = (app) => {
 
       res.status(201).json({
         data: createdMovieId,
-        message: 'movie created',
+        message: buildMessage('movie', 'create'),
       });
     } catch (err) {
       next(err);
@@ -81,7 +82,7 @@ const moviesApi = (app) => {
 
         res.status(200).json({
           data: updateMovieId,
-          message: 'movie updated',
+          message: buildMessage('movie', 'update'),
         });
       } catch (err) {
         next(err);
@@ -116,7 +117,7 @@ const moviesApi = (app) => {
 
         res.status(200).json({
           data: deleteMovieId,
-          message: 'movie deleted',
+          message: buildMessage('movie', 'delete'),
         });
       } catch (err) {
         next(err);
