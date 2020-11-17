@@ -1,6 +1,6 @@
 const moviesMock = [
   {
-    id: 'd2a4a062-d256-41bb-b1b2-9d915af6b75e',
+    id: 'd2a4a062d25641bbb1b29d91',
     title: 'Notti bianche, Le (White Nights)',
     year: 2019,
     cover: 'http://dummyimage.com/800x600.png/ff4444/ffffff',
@@ -20,7 +20,7 @@ const moviesMock = [
     ],
   },
   {
-    id: '3f951b6d-03fa-4fb0-a7a1-188c0abe9e06',
+    id: '3f951b6d03fa4fb0a7a1188c',
     title: "King Solomon's Mines",
     year: 2019,
     cover: 'http://dummyimage.com/800x600.png/dddddd/000000',
@@ -42,7 +42,7 @@ const moviesMock = [
     ],
   },
   {
-    id: 'c030eed2-dad1-47f4-b660-9cfb7170eadb',
+    id: 'c030eed2dad147f4b6609cfb',
     title: 'Inhuman Resources (Redd Inc.)',
     year: 2018,
     cover: 'http://dummyimage.com/800x600.png/ff4444/ffffff',
@@ -54,7 +54,7 @@ const moviesMock = [
     tags: ['Crime|Drama|Thriller'],
   },
   {
-    id: 'c672ff92-c373-49f4-9c5b-f0151d304361',
+    id: 'c672ff92c3749f49c5bf0151',
     title: 'Fortress',
     year: 2019,
     cover: 'http://dummyimage.com/800x600.png/cc0000/ffffff',
@@ -66,7 +66,7 @@ const moviesMock = [
     tags: ['Drama', 'Drama|Mystery|Thriller', 'Drama|Thriller'],
   },
   {
-    id: '5ec75811-1001-4612-9743-67296d90071a',
+    id: '5ec758111001461297436729',
     title: 'Transylmania',
     year: 2018,
     cover: 'http://dummyimage.com/800x600.png/ff4444/ffffff',
@@ -84,7 +84,7 @@ const moviesMock = [
     ],
   },
   {
-    id: '63d718f2-4e37-4090-ad57-dd2cf22393e6',
+    id: '63d718f24e374090ad57dd2c',
     title: "Big Girls Don't Cry... They Get Even (Stepkids)",
     year: 2018,
     cover: 'http://dummyimage.com/800x600.png/ff4444/ffffff',
@@ -96,7 +96,7 @@ const moviesMock = [
     tags: ['Action|Drama', 'Comedy'],
   },
   {
-    id: 'e9093aaa-daf2-4e32-aa6b-c3d79d0d9120',
+    id: 'e9093aaadaf24e32aa6bc3d7',
     title: 'Amreeka',
     year: 2018,
     cover: 'http://dummyimage.com/800x600.png/ff4444/ffffff',
@@ -108,7 +108,7 @@ const moviesMock = [
     tags: ['Comedy|Romance', 'Drama|Thriller', 'Animation|Children'],
   },
   {
-    id: '94f4fa76-fcf9-4aa3-a18f-f54bb7d462bc',
+    id: '94f4fa76fcf94aa3a18ff54b',
     title: 'Hollow Man',
     year: 2018,
     cover: 'http://dummyimage.com/800x600.png/ff4444/ffffff',
@@ -120,7 +120,7 @@ const moviesMock = [
     tags: ['Drama', 'Thriller'],
   },
   {
-    id: '9a2e5834-4eb5-4083-8c21-87fdfc0b3b52',
+    id: '9a2e58344eb540838c2187fd',
     title: 'Hard Target',
     year: 2018,
     cover: 'http://dummyimage.com/800x600.png/dddddd/000000',
@@ -139,7 +139,7 @@ const moviesMock = [
     ],
   },
   {
-    id: '11fff70c-c312-4791-b8b4-1a0665edd79e',
+    id: '11fff70cc312791b8b41a060',
     title: 'Siete minutos (Seven Minutes)',
     year: 2019,
     cover: 'http://dummyimage.com/800x600.png/5fa2dd/ffffff',
@@ -156,9 +156,17 @@ function filteredMoviesMock(tag) {
   return moviesMock.filter((movie) => movie.tags.includes(tag));
 }
 
+function finOneMovieMock(id) {
+  return moviesMock.find((movie) => movie.id === id);
+}
+
 class MoviesServiceMock {
   async getMovies() {
     return Promise.resolve(moviesMock);
+  }
+
+  async getMovie({ movieId }) {
+    return Promise.resolve(finOneMovieMock(movieId));
   }
 
   async createMovie() {
@@ -168,5 +176,6 @@ class MoviesServiceMock {
 module.exports = {
   moviesMock,
   filteredMoviesMock,
+  finOneMovieMock,
   MoviesServiceMock,
 };
