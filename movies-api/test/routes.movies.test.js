@@ -46,9 +46,9 @@ describe('routes - movies', function () {
 
   describe('POST /movies', function () {
     it('should respond with status 201', function (done) {
-      request.get(`/api/movies`).expect(200, done);
+      request.post(`/api/movies`).expect(201, done);
     });
-    it('should response requested movie', (done) => {
+    it('should response with movie id created', (done) => {
       request
         .post(`/api/movies`)
         .send(moviesMock[0])
