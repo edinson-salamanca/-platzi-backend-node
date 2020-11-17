@@ -43,4 +43,22 @@ describe('routes - movies', function () {
       });
     });
   });
+
+  describe('POST /movies', function () {
+    it('should respond with status 201', function (done) {
+      request.get(`/api/movies`).expect(200, done);
+    });
+    it('should response requested movie', (done) => {
+      request
+        .post(`/api/movies`)
+        .send(moviesMock[0])
+        .end((err, res) => {
+          assert.deepStrictEqual(res.body, {
+            data: moviesMock[0].id,
+            message: 'movie created',
+          });
+          done();
+        });
+    });
+  });
 });
