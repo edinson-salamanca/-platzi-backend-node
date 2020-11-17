@@ -26,4 +26,21 @@ describe('routes - movies', function () {
       });
     });
   });
+
+  describe('GET /movies/:movieId', function () {
+    const movieIdMock = 'd2a4a062d25641bbb1b29d91';
+
+    it('should respond with status 200', function (done) {
+      request.get(`/api/movies/${movieIdMock}`).expect(200, done);
+    });
+    it('should response requested movie', (done) => {
+      request.get(`/api/movies/${movieIdMock}`).end((err, res) => {
+        assert.deepStrictEqual(res.body, {
+          data: moviesMock[0],
+          message: 'movie retrieved',
+        });
+        done();
+      });
+    });
+  });
 });
