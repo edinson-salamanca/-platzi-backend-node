@@ -78,7 +78,7 @@ const moviesApi = (app) => {
       const { body: movie } = req;
 
       try {
-        const updateMovieId = await moviesService.update({ movieId, movie });
+        const updateMovieId = await moviesService.updateMovie({ movieId, movie });
 
         res.status(200).json({
           data: updateMovieId,
