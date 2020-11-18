@@ -81,4 +81,24 @@ describe('routes - movies', function () {
         });
     });
   });
+
+  describe('DELETE /movies', () => {
+    const movieIdMock = '3f951b6d03fa4fb0a7a1188c';
+    it('should reponse with status 200', (done) => {
+      request.delete(`/api/movies/${movieIdMock}`).expect(200, done);
+    });
+
+    it('should response with movie deleted', (done) => {
+      request
+        .delete(`/api/movies/${movieIdMock}`)
+        .send(moviesMock[0])
+        .end((err, res) => {
+          assert.deepStrictEqual(res.body, {
+            data: moviesMock[0].id,
+            message: 'movie deleted',
+          });
+          done();
+        });
+    });
+  });
 });
