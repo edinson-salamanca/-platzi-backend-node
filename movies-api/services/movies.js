@@ -1,4 +1,3 @@
-const { moviesMock } = require('../utils/mocks/movies');
 const MongoLib = require('../lib/mongo');
 
 class MoviesService {
@@ -34,10 +33,10 @@ class MoviesService {
     return updatedMovieId;
   }
 
-  async updatePatch() {
-    const updatePatchMovieId = Promise.resolve(moviesMock[0].id);
-    return updatePatchMovieId;
-  }
+  // async updatePatch() {
+  //   const updatePatchMovieId = Promise.resolve(moviesMock[0].id);
+  //   return updatePatchMovieId;
+  // }
 
   async deleteMovie({ movieId }) {
     const deletedMovieId = await this.mongoDB.delete(this.collection, movieId);

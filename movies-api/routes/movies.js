@@ -90,21 +90,21 @@ const moviesApi = (app) => {
     }
   );
 
-  router.patch('/:movieId', async function (req, res, next) {
-    const { movieId } = req.params;
-    const { body: movie } = req;
+  // router.patch('/:movieId', async function (req, res, next) {
+  //   const { movieId } = req.params;
+  //   const { body: movie } = req;
 
-    try {
-      const updateMovieId = await moviesService.updatePatch({ movieId, movie });
+  //   try {
+  //     const updateMovieId = await moviesService.updatePatch({ movieId, movie });
 
-      res.status(200).json({
-        data: updateMovieId,
-        message: 'resource updated',
-      });
-    } catch (err) {
-      next(err);
-    }
-  });
+  //     res.status(200).json({
+  //       data: updateMovieId,
+  //       message: 'resource updated',
+  //     });
+  //   } catch (err) {
+  //     next(err);
+  //   }
+  // }); 
 
   router.delete(
     '/:movieId',
