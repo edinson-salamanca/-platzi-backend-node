@@ -18,6 +18,13 @@ const deleteStub = sinon.stub().resolves(moviesMock[0].id);
 
 class MongoLibMock {
   getAll(collection, query) {
+    if (!query) {
+      getAllStub.withArgs('movies').resolves(moviesMock);
+    } else {
+      getAllStub
+        .withArgs('movies', query)
+        .resolves(filteredMoviesMock(query.tags.$in));
+    }
     return getAllStub(collection, query);
   }
 

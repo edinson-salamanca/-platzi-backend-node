@@ -38,11 +38,17 @@ describe('services - movies', function () {
       assert.strictEqual(getStub.called, true);
     });
 
-    it('should return requested movie', async function() {
+    it('should return requested movie', async function () {
       const mocksMovieId = 'd2a4a062d25641bbb1b29d91';
       const result = await moviesService.getMovie({ movieId: mocksMovieId });
       const expect = moviesMock[0];
       assert.deepStrictEqual(result, expect);
+    });
+
+    it('should return an object of movie filtered', async () => {
+      const result = await moviesService.getMovies({ tags: 'Terror' });
+      const expected = moviesMock.filter((movie) => movie.tags === 'Drama');
+      assert.deepStrictEqual(result, expected);
     });
   });
   describe('when createMovie method is called', async function () {
