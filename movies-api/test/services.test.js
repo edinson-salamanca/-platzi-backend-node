@@ -6,6 +6,7 @@ const {
   getAllStub,
   createStub,
   updateStub,
+  deleteStub,
 } = require('../utils/mocks/mongoLib');
 
 const { moviesMock } = require('../utils/mocks/movies');
@@ -55,6 +56,22 @@ describe('services - movies', function () {
         });
         const expected = moviesMock[0].id;
         assert.deepStrictEqual(result, expected);
+      });
+
+      describe('when deleteMovie method is called', async () => {
+        it('should call delete MongoLib method', async () => {
+          await moviesService.deleteMovie({});
+          assert.strictEqual(deleteStub.called, true);
+        });
+
+        it('should return an id of movie deleted', async () => {
+          const mocksMovieId = 'd2a4a062-d256-41bb-b1b2-9d915af6b75e';
+          const result = await moviesService.deleteMovie({
+            movieId: mocksMovieId,
+          });
+          const expected = moviesMock[0].id;
+          assert.strictEqual(result, expected);
+        });
       });
     });
   });
