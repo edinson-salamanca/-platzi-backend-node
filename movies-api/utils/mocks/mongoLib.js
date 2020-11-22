@@ -12,7 +12,9 @@ const getStub = sinon.stub();
 
 const createStub = sinon.stub().resolves(moviesMock[0].id);
 
-class MongLibMock {
+const updateStub = sinon.stub().resolves(moviesMock[0].id);
+
+class MongoLibMock {
   getAll(collection, query) {
     return getAllStub(collection, query);
   }
@@ -25,10 +27,15 @@ class MongLibMock {
   create(collection, data) {
     return createStub(collection, data);
   }
+
+  update(collection, id, data) {
+    return updateStub(collection, id, data);
+  }
 }
 
 module.exports = {
   getAllStub,
   createStub,
-  MongLibMock,
+  updateStub,
+  MongoLibMock,
 };
