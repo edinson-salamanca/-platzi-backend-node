@@ -41,6 +41,7 @@ class MongoLibMock {
 
 module.exports = {
   getAllStub,
+  getStub,
   createStub,
   updateStub,
   deleteStub,

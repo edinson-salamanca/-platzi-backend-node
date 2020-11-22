@@ -4,6 +4,7 @@ const proxyquire = require('proxyquire');
 const {
   MongoLibMock,
   getAllStub,
+  getStub,
   createStub,
   updateStub,
   deleteStub,
@@ -28,6 +29,20 @@ describe('services - movies', function () {
       const result = await moviesService.getMovies({});
       const expected = moviesMock;
       assert.deepStrictEqual(result, expected);
+    });
+  });
+
+  describe('when getMovie method is called', async function () {
+    it('should call the get MongoLib method', async function () {
+      await moviesService.getMovie({});
+      assert.strictEqual(getStub.called, true);
+    });
+
+    it('should return requested movie', async function() {
+      const mocksMovieId = 'd2a4a062d25641bbb1b29d91';
+      const result = await moviesService.getMovie({ movieId: mocksMovieId });
+      const expect = moviesMock[0];
+      assert.deepStrictEqual(result, expect);
     });
   });
   describe('when createMovie method is called', async function () {
