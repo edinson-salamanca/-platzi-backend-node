@@ -29,50 +29,49 @@ describe('services - movies', function () {
       const expected = moviesMock;
       assert.deepStrictEqual(result, expected);
     });
-
-    describe('when createMovie method is called', async function () {
-      it('should call create MongoLib method', async () => {
-        await moviesService.createMovie({});
-        assert.strictEqual(createStub.called, true);
-      });
-
-      it('shuld return an id of movie created', async () => {
-        const resultId = await moviesService.createMovie({});
-        const expected = moviesMock[0].id;
-        assert.deepStrictEqual(resultId, expected);
-      });
+  });
+  describe('when createMovie method is called', async function () {
+    it('should call create MongoLib method', async () => {
+      await moviesService.createMovie({});
+      assert.strictEqual(createStub.called, true);
     });
-    describe('when updateMovie method is called', async function () {
-      it('should call update MongoLib method', async function () {
-        moviesService.updateMovie({});
-        assert.strictEqual(updateStub.called, true);
-      });
 
-      it('should return an id to updated moive', async function () {
-        const mocksMovieId = '5fb1d49f97fe700343c9da89';
-        const result = await moviesService.updateMovie({
-          movieId: mocksMovieId,
-          movie: {},
-        });
-        const expected = moviesMock[0].id;
-        assert.deepStrictEqual(result, expected);
-      });
+    it('shuld return an id of movie created', async () => {
+      const resultId = await moviesService.createMovie({});
+      const expected = moviesMock[0].id;
+      assert.deepStrictEqual(resultId, expected);
+    });
+  });
+  describe('when updateMovie method is called', async function () {
+    it('should call update MongoLib method', async function () {
+      moviesService.updateMovie({});
+      assert.strictEqual(updateStub.called, true);
+    });
 
-      describe('when deleteMovie method is called', async () => {
-        it('should call delete MongoLib method', async () => {
-          await moviesService.deleteMovie({});
-          assert.strictEqual(deleteStub.called, true);
-        });
-
-        it('should return an id of movie deleted', async () => {
-          const mocksMovieId = 'd2a4a062-d256-41bb-b1b2-9d915af6b75e';
-          const result = await moviesService.deleteMovie({
-            movieId: mocksMovieId,
-          });
-          const expected = moviesMock[0].id;
-          assert.strictEqual(result, expected);
-        });
+    it('should return an id to updated moive', async function () {
+      const mocksMovieId = '5fb1d49f97fe700343c9da89';
+      const result = await moviesService.updateMovie({
+        movieId: mocksMovieId,
+        movie: {},
       });
+      const expected = moviesMock[0].id;
+      assert.deepStrictEqual(result, expected);
+    });
+  });
+
+  describe('when deleteMovie method is called', async () => {
+    it('should call delete MongoLib method', async () => {
+      await moviesService.deleteMovie({});
+      assert.strictEqual(deleteStub.called, true);
+    });
+
+    it('should return an id of movie deleted', async () => {
+      const mocksMovieId = 'd2a4a062-d256-41bb-b1b2-9d915af6b75e';
+      const result = await moviesService.deleteMovie({
+        movieId: mocksMovieId,
+      });
+      const expected = moviesMock[0].id;
+      assert.strictEqual(result, expected);
     });
   });
 });
